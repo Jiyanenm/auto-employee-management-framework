@@ -334,6 +334,84 @@ Pipeline Trigger:
 * Push to Main Branch
 * Pull Requests to Main Branch
 
+# GitHub Actions Configuration
+
+Workflow Location:
+
+.github/workflows/automation-pipeline.yml
+
+Workflow:
+
+```yaml
+name: Employee Management Automation Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Regression Test Suite
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Cache Maven Dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2
+          key: maven-${{ hashFiles('**/pom.xml') }}
+
+      - name: Execute Test Suite
+        run: mvn clean test -Denv=qa -Dtest=TestSuite
+
+      - name: Generate Allure Report
+        run: mvn allure:report
+
+      - name: Upload Test Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: automation-test-report
+          path: |
+            target/surefire-reports/
+            target/allure-results/
+```
+
+Pipeline Features:
+
+* Automatic execution on every push to main
+* Automatic execution on pull requests
+* Maven dependency caching
+* Regression suite execution
+* QA environment execution
+* Allure report generation
+* Test artifact upload
+* Headless browser execution support
+
+Pipeline Outcome:
+
+* Faster feedback cycle
+* Automated regression validation
+* Continuous Integration support
+* Centralized test reporting
+* Improved software quality
+
+
+
 ---
 
 # Maven Commands
