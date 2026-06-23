@@ -23,7 +23,8 @@ The framework follows industry-standard automation practices including:
 
 # Application Under Test
 
-Employee Management Application
+I have Built my own Employee Management Application using angular and firebase as our cloud database.
+I have deployed my this CRUD Application on vercel cloud application platform.
 
 Application URL:
 
