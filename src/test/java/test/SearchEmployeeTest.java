@@ -20,7 +20,7 @@ public class SearchEmployeeTest extends BaseTest {
                 new LoginPage(driver);
 
         loginPage.login(
-                EnvironmentConfig.getProperty("email"),
+                EnvironmentConfig.getProperty("username"),
                 EnvironmentConfig.getProperty("password")
         );
 

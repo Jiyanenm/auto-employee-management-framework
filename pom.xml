@@ -79,9 +79,7 @@
                 <version>3.2.5</version>
 
                 <configuration>
-                    <includes>
-                        <include>**/TestSuite.java</include>
-                    </includes>
+                    <useModulePath>false</useModulePath>
                 </configuration>
             </plugin>
 

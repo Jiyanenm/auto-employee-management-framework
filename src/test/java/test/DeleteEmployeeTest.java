@@ -20,7 +20,7 @@ public class DeleteEmployeeTest extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
 
         loginPage.login(
-                EnvironmentConfig.getProperty("email"),
+                EnvironmentConfig.getProperty("username"),
                 EnvironmentConfig.getProperty("password")
         );
 

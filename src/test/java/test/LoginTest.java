@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.LoginPage;
 import utils.ConfigReader;
+import utils.EnvironmentConfig;
 import utils.JsonReader;
 
 public class LoginTest extends BaseTest {
@@ -18,7 +19,7 @@ public class LoginTest extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
 
         JsonReader json =
-                new JsonReader(ConfigReader.get("json_test_data_path"));
+                new JsonReader(EnvironmentConfig.getProperty("json_test_data_path"));
 
         String email = json.getValue("username");
         String password = json.getValue("password");
