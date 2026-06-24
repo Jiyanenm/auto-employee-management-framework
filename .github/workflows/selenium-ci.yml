@@ -31,12 +31,17 @@ jobs:
       - name: Run Tests
         run: mvn clean test -Denv=qa -Dheadless=true
 
-      - name: Generate Allure Report (safe method)
-        run: mvn allure:report || true
+      - name: Install Allure CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y allure
 
-      - name: Deploy Allure to GitHub Pages
+      - name: Generate Allure Report
+        run: allure generate target/allure-results -o target/allure-report --clean
+
+      - name: Deploy to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: target/site/allure-maven-plugin
+          publish_dir: target/allure-report
