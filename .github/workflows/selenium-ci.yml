@@ -23,6 +23,7 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
+          cache: maven
 
       - name: Cache Maven Dependencies
         uses: actions/cache@v4
@@ -30,17 +31,43 @@ jobs:
           path: ~/.m2
           key: maven-${{ hashFiles('**/pom.xml') }}
 
-      - name: Execute Test Suite
-        run: mvn clean test -Denv=qa -Dtest=RegressionSuite -Dheadless=true
+      # 🔥 Ensure environment is set properly
+      - name: Set Environment Variables
+        run: echo "env=qa" >> $GITHUB_ENV
 
+      # 🔥 Run Tests (stable + CI safe)
+      - name: Execute Test Suite
+        run: |
+          mvn clean test \
+          -Denv=qa \
+          -Dheadless=true \
+          -Djson_test_data_path=src/test/resources/testdata/login.json
+
+      # 🔥 Generate Allure Report (only if tests ran)
       - name: Generate Allure Report
+        if: always()
         run: mvn allure:report
 
-      - name: Upload Test Reports
+      # 🔥 Upload Surefire Reports
+      - name: Upload Surefire Reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: automation-test-report
-          path: |
-            target/surefire-reports/
-            target/allure-results/
+          name: surefire-reports
+          path: target/surefire-reports/
+
+      # 🔥 Upload Allure Results
+      - name: Upload Allure Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results
+          path: target/allure-results/
+
+      # 🔥 Upload Allure HTML Report
+      - name: Upload Allure HTML Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: target/site/allure-maven-plugin/
