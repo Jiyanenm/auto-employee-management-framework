@@ -464,7 +464,6 @@ Benefits:
 * Lower resource usage
 
 ---
-
 # Achievements Completed
 
 ✔ Selenium Framework Setup
