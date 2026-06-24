@@ -525,6 +525,10 @@ Generated dashboard:
 
 target/site/allure-maven-plugin
 
+CI status
+
+![Build Status](https://github.com/<user>/<repo>/actions/workflows/ci.yml/badge.svg)
+
 # Author
 
 Nkosinathi
