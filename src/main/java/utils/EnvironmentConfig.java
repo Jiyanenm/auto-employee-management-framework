@@ -1,26 +1,39 @@
 package utils;
 
-import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class EnvironmentConfig {
 
-    private static Properties properties = new Properties();
+    private static final Properties properties = new Properties();
 
     public static void loadEnvironment() {
 
-        String env = System.getProperty("env", "qa"); // default = qa
+        String env = System.getProperty("env", "qa");
 
         try {
 
-            FileInputStream fis = new FileInputStream(
-                    "src/test/resources/environments/" + env + ".properties"
-            );
+            String fileName = "environments/" + env + ".properties";
 
-            properties.load(fis);
+            InputStream inputStream =
+                    EnvironmentConfig.class
+                            .getClassLoader()
+                            .getResourceAsStream(fileName);
+
+            if (inputStream == null) {
+                throw new RuntimeException(
+                        "Environment file not found: " + fileName
+                );
+            }
+
+            properties.clear();
+            properties.load(inputStream);
 
         } catch (Exception e) {
-            throw new RuntimeException("Failed to load environment: " + env, e);
+            throw new RuntimeException(
+                    "Failed to load environment: " + env,
+                    e
+            );
         }
     }
 
