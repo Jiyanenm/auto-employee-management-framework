@@ -2,12 +2,9 @@ name: Employee Management Automation Pipeline
 
 on:
   push:
-    branches:
-      - main
-
+    branches: [main]
   pull_request:
-    branches:
-      - main
+    branches: [main]
 
 permissions:
   contents: write
@@ -31,17 +28,19 @@ jobs:
       - name: Run Tests
         run: mvn clean test -Denv=qa -Dheadless=true
 
-      - name: Install Allure CLI
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y allure
-
       - name: Generate Allure Report
-        run: allure generate target/allure-results -o target/allure-report --clean
+        run: mvn allure:report
+
+      - name: Upload Allure Results (Debug)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results
+          path: target/allure-results
 
       - name: Deploy to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: target/allure-report
+          publish_dir: target/site/allure-maven-plugin
