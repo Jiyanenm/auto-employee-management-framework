@@ -410,7 +410,7 @@ Pipeline Outcome:
 * Centralized test reporting
 * Improved software quality
 
-
+Command running pipeline : 
 
 ---
 

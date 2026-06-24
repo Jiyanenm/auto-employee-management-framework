@@ -3,6 +3,7 @@ package pages;
 import base.BasePage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
+import utils.WaitUtils;
 
 public class EmployeePage extends BasePage {
 
@@ -40,6 +41,9 @@ public class EmployeePage extends BasePage {
     // ---------------------------
 
     public void clickAddEmployee() {
+
+        WaitUtils.waitForOverlayToDisappear(driver);
+
         click(addEmployeeButton);
     }
 

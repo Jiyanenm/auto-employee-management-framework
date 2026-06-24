@@ -5,6 +5,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.WaitUtils;
 
+import java.time.Duration;
 
 
 public class BasePage {
@@ -17,9 +18,9 @@ public class BasePage {
         this.waitUtils = new WaitUtils(driver);
     }
 
-    protected void click(By locator) {
-        waitUtils.waitForElementClickable(locator).click();
-    }
+//    protected void click(By locator) {
+//        waitUtils.waitForElementClickable(locator).click();
+//    }
 
     protected void type(By locator, String value) {
         waitUtils.waitForElementVisible(locator).clear();
@@ -28,5 +29,14 @@ public class BasePage {
 
     public String getText(By locator) {
         return driver.findElement(locator).getText();
+    }
+    public void click(By locator) {
+
+        WebDriverWait wait =
+                new WebDriverWait(driver, Duration.ofSeconds(15));
+
+        wait.until(
+                ExpectedConditions.elementToBeClickable(locator)
+        ).click();
     }
 }

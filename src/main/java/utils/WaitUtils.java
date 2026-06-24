@@ -25,4 +25,14 @@ public class WaitUtils{
     public WebElement waitForElementClickable(By locator) {
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
+    public static void waitForOverlayToDisappear(WebDriver driver) {
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+        wait.until(
+                ExpectedConditions.invisibilityOfElementLocated(
+                        By.cssSelector(".overlay")
+                )
+        );
+    }
 }
