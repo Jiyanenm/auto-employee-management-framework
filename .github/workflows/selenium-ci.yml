@@ -9,6 +9,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
   test:
     name: Regression Test Suite
@@ -25,18 +28,15 @@ jobs:
           java-version: 17
           cache: maven
 
-      - name: Execute Test Suite
+      - name: Run Tests
         run: mvn clean test -Denv=qa -Dheadless=true
 
-      - name: Generate Allure Results
-        run: mvn allure:report
+      - name: Generate Allure Report (safe method)
+        run: mvn allure:report || true
 
-      - name: Upload Reports
+      - name: Deploy Allure to GitHub Pages
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          name: automation-test-report
-          path: |
-            target/surefire-reports/
-            target/allure-results/
-            target/site/allure-maven-plugin/
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: target/site/allure-maven-plugin
