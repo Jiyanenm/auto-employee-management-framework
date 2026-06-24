@@ -18,9 +18,7 @@ public class BasePage {
         this.waitUtils = new WaitUtils(driver);
     }
 
-//    protected void click(By locator) {
-//        waitUtils.waitForElementClickable(locator).click();
-//    }
+
 
     protected void type(By locator, String value) {
         waitUtils.waitForElementVisible(locator).clear();
@@ -32,11 +30,32 @@ public class BasePage {
     }
     public void click(By locator) {
 
-        WebDriverWait wait =
-                new WebDriverWait(driver, Duration.ofSeconds(15));
+        try {
 
-        wait.until(
-                ExpectedConditions.elementToBeClickable(locator)
-        ).click();
+            waitUtils.waitForElementClickable(locator).click();
+
+        } catch (ElementClickInterceptedException e) {
+
+            WaitUtils.waitForOverlayToDisappear(driver);
+            waitForToastToDisappear(driver);
+
+            waitUtils.waitForElementClickable(locator).click();
+        }
+    }
+    public static void waitForToastToDisappear(WebDriver driver) {
+
+        WebDriverWait wait =
+                new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        try {
+
+            wait.until(
+                    ExpectedConditions.invisibilityOfElementLocated(
+                            By.cssSelector(".toast-title")
+                    )
+            );
+
+        } catch (Exception ignored) {
+        }
     }
 }

@@ -1,6 +1,7 @@
 package test;
 
 import base.BaseTest;
+import io.qameta.allure.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,11 @@ public class DeleteEmployeeTest extends BaseTest {
     @Tag("smoke")
     @Tag("regression")
     @Test
+    @Owner("Nkosinathi Jiyane")
+    @Severity(SeverityLevel.CRITICAL)
+    @Epic("Employee Management")
+    @Feature("Employee CRUD")
+    @Story("Delete Employee")
     public void deleteEmployeeTest() throws Exception {
 
         LoginPage loginPage = new LoginPage(driver);

@@ -1,6 +1,7 @@
 package test;
 
 import base.BaseTest;
+import io.qameta.allure.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pages.EmployeePage;
@@ -12,6 +13,11 @@ import utils.JsonReader;
 public class EditEmployeeTest extends BaseTest {
 
     @Test
+    @Owner("Nkosinathi Jiyane")
+    @Severity(SeverityLevel.CRITICAL)
+    @Epic("Employee Management")
+    @Feature("Employee CRUD")
+    @Story("Edit Employee")
     public void editEmployeeTest() throws InterruptedException {
 
         // Load JSON test data once

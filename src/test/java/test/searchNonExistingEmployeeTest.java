@@ -1,6 +1,7 @@
 package test;
 
 import base.BaseTest;
+import io.qameta.allure.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,11 @@ public class searchNonExistingEmployeeTest extends BaseTest {
     @Tag("smoke")
     @Tag("regression")
     @Test
+    @Owner("Nkosinathi Jiyane")
+    @Severity(SeverityLevel.CRITICAL)
+    @Epic("Employee Management")
+    @Feature("Employee CRUD")
+    @Story("Search inValid Employee")
     public void searchNonExistingEmployeeTest() throws Exception {
 
         LoginPage loginPage = new LoginPage(driver);

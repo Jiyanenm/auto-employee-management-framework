@@ -1,38 +1,66 @@
+# =========================
+# Maven / Build output
+# =========================
 target/
 !.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
 
-### IntelliJ IDEA ###
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
-*.iws
+# =========================
+# IntelliJ / Eclipse / VS Code
+# =========================
+.idea/
 *.iml
 *.ipr
-
-### Eclipse ###
-.apt_generated
+*.iws
 .classpath
-.factorypath
 .project
-.settings
-.springBeans
-.sts4-cache
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
+.settings/
 .vscode/
 
-### Mac OS ###
+# =========================
+# OS files
+# =========================
 .DS_Store
+Thumbs.db
+
+# =========================
+# Logs
+# =========================
+*.log
+logs/
+
+# =========================
+# Allure Reports
+# =========================
+allure-results/
+allure-report/
+target/allure-results/
+target/allure-report/
+target/site/allure-maven-plugin/
+
+# =========================
+# Selenium / Test artifacts
+# =========================
+screenshots/
+videos/
+test-output/
+
+# =========================
+# Environment files (IMPORTANT)
+# =========================
+.env
+*.properties
+
+# BUT keep config template if needed
+!src/test/resources/*.properties
+
+# =========================
+# Java compiled files
+# =========================
+*.class
+
+# =========================
+# Maven wrapper
+# =========================
+.mvn/
+mvnw
+mvnw.cmd

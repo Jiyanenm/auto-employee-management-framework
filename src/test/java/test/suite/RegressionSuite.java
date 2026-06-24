@@ -9,7 +9,8 @@ import test.*;
         AddEmployeeTest.class,
         SearchEmployeeTest.class,
         searchNonExistingEmployeeTest.class,
-        DeleteEmployeeTest.class
+        DeleteEmployeeTest.class,
+        LogoutTest.class
 })
 public class RegressionSuite {
 }

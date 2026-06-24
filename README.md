@@ -422,7 +422,7 @@ mvn clean test
 
 Run Regression Suite
 
-mvn clean test -Dtest=TestSuite
+mvn clean test -Denv=qa -Dtest=RegressionSuite -Dheadless=true
 
 Run QA Environment
 
@@ -440,10 +440,11 @@ Generate Allure Report
 
 mvn allure:report
 
-Serve Allure Report
+mvn allure:report
 
 mvn allure:serve
 
+allure serve target/allure-results
 ---
 
 # Headless Execution
@@ -510,6 +511,20 @@ Benefits:
 * BDD with Cucumber
 
 ---
+
+#  Generate Allure Results
+
+mvn clean test
+
+This creates:
+
+target/allure-results
+
+mvn allure:report
+
+Generated dashboard:
+
+target/site/allure-maven-plugin
 
 # Author
 
