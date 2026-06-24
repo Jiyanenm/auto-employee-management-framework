@@ -74,7 +74,10 @@ public class BaseTest {
             driver.quit();
         }
     }
-
+    @AfterEach
+    public void captureFailure(TestInfo testInfo) {
+        ScreenshotUtil.capture(driver, testInfo.getDisplayName());
+    }
     protected void takeScreenshot(String name) {
         ScreenshotUtil.capture(driver, name);
     }
