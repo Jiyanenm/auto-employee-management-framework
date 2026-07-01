@@ -531,7 +531,7 @@ CI status
 
 # Author
 
-Nkosinathi
+Nkosinathi Jiyane
 
 Automation Test Engineer | SDET
 
