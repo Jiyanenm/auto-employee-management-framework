@@ -519,9 +519,12 @@ This creates:
 
 target/allure-results
 
-mvn allure:report
+- mvn allure:report
+- allure generate target/allure-results --clean -o target/allure-report
+- allure open target/allure-report
+Generated report dashboard:
 
-Generated dashboard:
+
 
 target/site/allure-maven-plugin
 
