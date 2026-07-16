@@ -25,10 +25,9 @@ public class EditEmployeeTest extends BaseTest {
 
         LoginPage loginPage = new LoginPage(driver);
 
-        loginPage.login(
-                EnvironmentConfig.getProperty("email"),
-                EnvironmentConfig.getProperty("password")
-        );
+        String email = json.getValue("email");
+        String password = json.getValue("password");
+        loginPage.login(email,password);
 
         EmployeePage employeePage = new EmployeePage(driver);
 

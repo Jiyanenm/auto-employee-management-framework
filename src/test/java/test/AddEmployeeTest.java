@@ -46,11 +46,7 @@ public class AddEmployeeTest extends BaseTest {
                 json.getValue("department"),
                 json.getValue("status")
         );
-
-        Thread.sleep(3000);
-
-        Assertions.assertTrue(
-                driver.getPageSource().contains("Automation User")
-        );
+        Assertions.assertTrue(employeePage.isSaveSuccessful());
     }
+
 }

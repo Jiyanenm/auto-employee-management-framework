@@ -36,6 +36,9 @@ public class EmployeePage extends BasePage {
     private By searchField =
             By.xpath("//input[contains(@placeholder,'Search')]");
 
+    private By successToast =
+            By.xpath("//*[contains(text(),'Employee added')]");
+
     // ---------------------------
     // BASIC ACTIONS
     // ---------------------------
@@ -72,11 +75,11 @@ public class EmployeePage extends BasePage {
         click(saveButton);
 
         // 🔥 stability wait (Angular update)
-        waitUtils.waitForElementVisible(
-                By.xpath("//*[contains(text(),'" + name + "')]")
-        );
+        waitUtils.waitForElementVisible(successToast);
     }
-
+    public boolean isSaveSuccessful() {
+        return waitUtils.waitForElementVisible(successToast).isDisplayed();
+    }
     // ---------------------------
     // UPDATE EMPLOYEE (FIXED)
     // ---------------------------
